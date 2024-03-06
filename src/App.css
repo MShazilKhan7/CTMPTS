@@ -15,3 +15,11 @@ input{
   object-fit: cover;
   object-position: center;
 }
+
+.sidebar{
+  height: calc(100vh - 50px);
+}
+
+.right-icons{
+  font-size: 20px;
+} 

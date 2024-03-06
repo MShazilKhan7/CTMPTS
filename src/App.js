@@ -4,6 +4,7 @@ import AccountLayout from './components/account/accountLayout';
 import { Routes,Route } from 'react-router-dom';
 import SignupForm from './components/account/signup';
 import LoginForm from './components/account/login';
+import DashboardLayout from './components/dashboard/dashboardLayout';
 
 function App() {
   return (
@@ -13,6 +14,12 @@ function App() {
                 <Route path='login/' element={<LoginForm/>}></Route>
                 <Route path='signup/' element={<SignupForm/>}></Route>
             </Route>
+            <Route path='dashboard/' element={<DashboardLayout/>}>
+                {/* <Route index element={}></Route>
+                <Route index element={}></Route>
+                <Route index element={}></Route> */}
+            </Route>
+
         </Routes>
   );
 }
