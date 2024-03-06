@@ -8,7 +8,7 @@ const LoginForm = ()=>{
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm();
     const [value, setValue]  = useState()
     return (
-        <div className="login flex flex-col  gap-2 w-full items-center justify-center ">
+        <div className="login flex flex-col gap-2 w-full items-center justify-center ">
             <div className="customer-portal flex flex-col items-center gap-3 ">
                 <div className="flex items-center gap-2">
                     <FaWallet className="text-[#274C77]"/>

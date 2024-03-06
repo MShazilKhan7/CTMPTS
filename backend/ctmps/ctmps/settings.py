@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'ctmps.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'your_database_name',
-        'USER': 'your_mysql_username',
-        'PASSWORD': 'your_mysql_password',
+        'NAME': 'ctmps_db',
+        'USER': 'root',
+        'PASSWORD': 'shazilkhan0909@_',
         'HOST': 'localhost',   # Or your MySQL server address
         'PORT': '3306',        # Or your MySQL port
     }
@@ -127,3 +127,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'api/CustomUser'
