@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./navbar/navbar";
 import Sidebar from "./sidebar/sidebar";
-
+import { Outlet } from "react-router-dom";
 
 const DashboardLayout = ()=>{
     return (
@@ -13,8 +13,8 @@ const DashboardLayout = ()=>{
                 <div className="sidebar">
                     <Sidebar/>
                 </div>
-                <div className="options h-full bg-purple-500 overflow-auto">
-
+                <div className="options h-full overflow-auto">
+                    <Outlet/>
                 </div>
             </div>
         </div>

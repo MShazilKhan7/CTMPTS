@@ -5,6 +5,7 @@ import { Routes,Route } from 'react-router-dom';
 import SignupForm from './components/account/signup';
 import LoginForm from './components/account/login';
 import DashboardLayout from './components/dashboard/dashboardLayout';
+import PaymentContent from './components/dashboard/payments/paymentsContent';
 
 function App() {
   return (
@@ -15,11 +16,8 @@ function App() {
                 <Route path='signup/' element={<SignupForm/>}></Route>
             </Route>
             <Route path='dashboard/' element={<DashboardLayout/>}>
-                {/* <Route index element={}></Route>
-                <Route index element={}></Route>
-                <Route index element={}></Route> */}
+                <Route index element={<PaymentContent/>}></Route>
             </Route>
-
         </Routes>
   );
 }

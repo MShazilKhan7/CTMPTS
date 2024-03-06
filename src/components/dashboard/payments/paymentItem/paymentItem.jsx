@@ -1,14 +1,14 @@
 import React from "react";
 
-const PaymentItem = () =>{
+const PaymentItem = ({props}) =>{
     return (
-        <div className="payment-item px-2 py-2 w-1/4 h-[230px] rounded-md border border-[#6096BA]">
+        <div className="payment-item px-3 py-2 w-1/4 h-[150px] rounded-md border-2 border-[#6096BA] bg-[rgb(170,205,228)]">
             <div className="flex flex-col gap-[20px]">
                 <div>
-                    <p>Total Pending Records</p>
+                    <p>{props.heading}</p>
                 </div>
-                <div className="rounded-r-full rounded-l-full border border-[#6096BA]">
-                    <p>234 records</p>
+                <div className="rounded-r-full rounded-l-full px-7 w-fit flex items-center justify-center leading-tight border border-[#6096BA]">
+                    <p>{props.record}</p>
                 </div>
             </div>
         </div>
