@@ -3,14 +3,14 @@ import { FaWallet } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-
+import { Link } from "react-router-dom";
 
 
 const SignupForm = ()=>{
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm();
     const [value, setValue]  = useState()
     return (
-        <div className="sign-up flex flex-col gap-2 w-full items-center justify-center ">
+        <div className="sign-up flex flex-col gap-2 w-full items-center justify-center mt-10">
             <div className="customer-portal flex flex-col items-center gap-3 ">
                 <div className="flex items-center gap-2">
                     <FaWallet className="text-[#274C77]"/>
@@ -29,6 +29,7 @@ const SignupForm = ()=>{
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         placeholder="Username"
+                        
                         name="username"
                         {...register("username",{ required: 'Username is required' })}/>
                         {errors.username && <p className="text-red-500 text-xs italic">{errors.username.message}</p>}
@@ -87,10 +88,13 @@ const SignupForm = ()=>{
                         Sign Up
                     </button>
                 </div>
+                <div className="flex justify-center">
+                   <p>Already have an Account <Link to='/login' className="font-bold text-[#274C77]">Sign in</Link></p>
+                </div>
                 </form>
                
             </div>
-            </div>
+        </div>
     )
 }
 
