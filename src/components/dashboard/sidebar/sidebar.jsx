@@ -23,7 +23,7 @@ const Items = [
 
 function Sidebar(){
     return (
-        <div className="w-[240px] sidebar bg-[#E7ECEF] px-3 py-2">
+        <div className="w-[240px] h-full sidebar bg-[#E7ECEF] px-3 py-2">
             <div className="w-full sidebar-items flex flex-col gap-2 ">
                 {Items.map((item,index)=>{
                     return (

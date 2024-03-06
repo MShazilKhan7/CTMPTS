@@ -16,10 +16,13 @@ input{
   object-position: center;
 }
 
-.sidebar{
+.db-content{
   height: calc(100vh - 50px);
 }
 
+.db-content .options{
+  width: calc(100% - 240px);
+}
 .right-icons{
-  font-size: 20px;
+  font-size: 18px;
 } 
