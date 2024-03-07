@@ -8,6 +8,8 @@ import DashboardLayout from './components/dashboard/dashboardLayout';
 import PaymentContent from './components/dashboard/payments/paymentsContent';
 
 function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
         <Routes>
             <Route path='/' element={<AccountLayout/>}> 
@@ -15,9 +17,15 @@ function App() {
                 <Route path='login/' element={<LoginForm/>}></Route>
                 <Route path='signup/' element={<SignupForm/>}></Route>
             </Route>
-            <Route path='dashboard/' element={<DashboardLayout/>}>
+            <PrivateRoute
+                        path="dashboard/"
+                        component={<DashboardLayout/>}
+                        isAuthenticated={isAuthenticated}>
                 <Route index element={<PaymentContent/>}></Route>
-            </Route>
+
+            </PrivateRoute>
+
+            
         </Routes>
   );
 }

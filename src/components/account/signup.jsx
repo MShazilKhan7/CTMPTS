@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 
 const SignupForm = ()=>{
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm();
     const [value, setValue]  = useState()
+    const handleFormSubmission = async(data) =>{
+        console.log(data)
+       
+        if(data){
+            try{
+            const user = {
+                username:  data['username'],
+                email: data['email'],
+                phone_number: value,
+                account_number: data['accountNumber'],
+                password: data['password']
+            }
+          const response = await axios.post('http://127.0.0.1:8000/api/auth/signup', user);
+          console.log("success")
+            }
+            catch (error) {
+            console.error('Error posting data:', error);
+             }
+        }
+    }
+    useEffect(()=>{
+        handleFormSubmission()
+    },[])
+
     return (
         <div className="sign-up flex flex-col gap-2 w-full items-center justify-center mt-10">
             <div className="customer-portal flex flex-col items-center gap-3 ">
@@ -22,7 +46,7 @@ const SignupForm = ()=>{
                 </div>
             </div>
             <div className="form">
-                <form action="" className="flex flex-col gap-2">
+                <form action="" onSubmit={handleSubmit(handleFormSubmission)} className="flex flex-col gap-2">
 
                     <div className="username">
                         <label htmlFor="username" className="font-semibold">Username</label>
@@ -52,7 +76,7 @@ const SignupForm = ()=>{
                     <div className="account-number">
                         <label htmlFor="account-number" className="font-semibold">Account Number</label>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="email"
+                        type="number"
                         placeholder="Account Number"
                         name="accountnumber"
                         {...register("accountNumber",{ required: 'Account Number is required' })}/>
@@ -82,11 +106,12 @@ const SignupForm = ()=>{
                     {errors.password && <p className="text-red-500 text-xs italic">{errors.password.message}</p>}
                  </div>
                  <div className="submit">
-                    <button
+                    <input
                         className="bg-[#274C77] w-full  flex items-center justify-center text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit">
+                        type="submit"
                         Sign Up
-                    </button>
+                        disabled = {isSubmitting}
+                    />
                 </div>
                 <div className="flex justify-center">
                    <p>Already have an Account <Link to='/login' className="font-bold text-[#274C77]">Sign in</Link></p>

@@ -2,11 +2,27 @@ import React, { useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 
 const LoginForm = ()=>{
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm();
     const [value, setValue]  = useState()
+    const [isLoggedIn, setisLoggedIn] = useState()
+
+    const handleFormSubmission = async (data)=>{
+        if(data){
+            try {
+                const user = {
+                    username: data['username'],
+                    password: data['password']
+                }
+                axios.post()
+
+            } catch (error) {
+                
+            }
+        }
+    }
     return (
         <div className="login flex flex-col gap-2 w-full items-center justify-center ">
             <div className="customer-portal flex flex-col items-center gap-3 ">
@@ -20,7 +36,7 @@ const LoginForm = ()=>{
                 </div>
             </div>
             <div className="form">
-                <form action="" className="flex flex-col gap-2">
+                <form action="" onSubmit={handleSubmit(handleFormSubmission)} className="flex flex-col gap-2">
                     <div className="username">
                         <label htmlFor="username" className="font-semibold">Username</label>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
