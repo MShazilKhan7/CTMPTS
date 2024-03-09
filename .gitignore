@@ -22,3 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+backend/ctmps/ctmps/settings.py
+backend/api/migrations
+backend/ctmps/api/__pycache__
