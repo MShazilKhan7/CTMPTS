@@ -16,10 +16,12 @@ const LoginForm = ()=>{
                     username: data['username'],
                     password: data['password']
                 }
-                axios.post()
+                const response = await axios.post('http://127.0.0.1:8000/api/auth/login', user);
+                const token =  response.data 
+                
 
             } catch (error) {
-                
+                console.log("error logged in!")
             }
         }
     }

@@ -9,6 +9,7 @@ const PrivateRoute = ({component, isAuthenticated, ...rest })=>{
        { ...rest}
        element={isAuthenticated ?  (<component/>): (redirect('login'))}
     >
+        <Route index element={<PaymentContent/>}></Route>
     </Route>
 }
 

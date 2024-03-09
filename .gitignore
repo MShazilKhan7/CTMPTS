@@ -22,37 +22,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
-# Ignore virtual environment files
-venv/
-.env
-
-# Ignore database files
-*.sqlite3
-
-# Ignore static files directory (if using Django's default)
-/static/
-
-# Ignore media files directory (if using Django's default)
-/media/
-
-# Ignore secret keys file (you should store it securely outside of version control)
-*.secret_key
-
-# Ignore logs and other dynamically generated files
-*.log
-*.pot
-*.pyc
-__pycache__/
-
-# Ignore IDE and editor specific files
-.vscode/
-*.sublime-project
-*.sublime-workspace
-*.swo
-*.swp
-*.idea/
-
-# Ignore deployment files
-*.DS_Store
-.deploy/
