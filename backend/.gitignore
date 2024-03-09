@@ -6,11 +6,15 @@ venv/
 # Ignore database files
 *.sqlite3
 
+/migrations/
+
 # Ignore static files directory (if using Django's default)
 /static/
 
+
 # Ignore media files directory (if using Django's default)
 /media/
+
 
 # Ignore secret keys file (you should store it securely outside of version control)
 *.secret_key
@@ -32,3 +36,5 @@ __pycache__/
 # Ignore deployment files
 *.DS_Store
 .deploy/
+
+settings.py
