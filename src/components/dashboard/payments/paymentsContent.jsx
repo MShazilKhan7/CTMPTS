@@ -1,5 +1,6 @@
 import React from "react";
 import PaymentItem from "./paymentItem/paymentItem";
+import PaymentsTable from "./allPayments/allPaymentsTable";
 
 const payments = [
     {
@@ -15,11 +16,134 @@ const payments = [
         record: 4
     }
 ]
-const PaymentContent = ()=>{
 
+
+const tabledata  = {
+    headers: ['customer account no', 'merchant account no', 'status','description','time','date','amount','actions'],
+    rows: [
+        {
+            customerAccountNumber: 294792649826,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },   
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        
+        {
+            customerAccountNumber: 2947926498264896,
+            merchantAccountNumber: 2372947297427947,
+            status: "pending",
+            description: "payment purpose",
+            time: "03:09 AM",
+            date: "Feb 15, 2023",
+            amount: 780,
+            actions: "delete"
+        },
+        
+
+        
+    ]
+}
+
+
+const PaymentContent = ()=>{
     return (
-        <div className="payment-content flex flex-col w-full h-full">
-            <div className="top-section w-full flex flex-col gap-3 px-6 py-5">
+        <div className="payment-content flex flex-col">
+            <div className="top-section w-full flex flex-col gap-3 px-6 py-5 pb-16">
                 <p className="text-3xl font-bold">Payments</p>
                 <div className="flex flex-wrap gap-5 py-2">
                     {payments.map((pitem, index)=>{
@@ -29,8 +153,8 @@ const PaymentContent = ()=>{
                     })}
                 </div>
             </div>
-            <div className="table">
-                    {/* table to be placed here */}
+            <div className="bottom-section">
+                <PaymentsTable data={tabledata}/>
             </div>
         </div>
     )

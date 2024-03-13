@@ -1,30 +1,29 @@
-import React, { useState } from "react";
 import { FaWallet } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
-
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 const LoginForm = ()=>{
     const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm();
-    const [value, setValue]  = useState()
-    const [isLoggedIn, setisLoggedIn] = useState()
-
-    const handleFormSubmission = async (data)=>{
-        if(data){
+    const {isAuthenticated, setisAuthenticated} = useContext(AuthContext)
+    const handleFormSubmission = async (data) => {
+        if (data) {
             try {
                 const user = {
                     username: data['username'],
                     password: data['password']
                 }
                 const response = await axios.post('http://127.0.0.1:8000/api/auth/login', user);
-                const token =  response.data 
-                
-
+                const token = response.data.jwt;
+                localStorage.setItem('jwt', JSON.stringify(token));
+                setisAuthenticated(true)
             } catch (error) {
                 console.log("error logged in!")
             }
         }
     }
+   
     return (
         <div className="login flex flex-col gap-2 w-full items-center justify-center ">
             <div className="customer-portal flex flex-col items-center gap-3 ">
@@ -64,6 +63,7 @@ const LoginForm = ()=>{
                  </div>
                  <div className="submit">
                     <button
+                        disabled={isSubmitting}
                         className="bg-[#274C77] w-full  flex items-center justify-center text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit">
                         Sign Up
@@ -73,11 +73,12 @@ const LoginForm = ()=>{
                    <p>Don't have an Account <Link to='/signup' className="font-bold text-[#274C77]">Sign Up</Link></p>
                 </div>
             </form>
-               
+               {isAuthenticated && <Navigate to={'/dashboard'} />}
             </div>
 
         </div>
     )
 }
+
 
 export default LoginForm;
