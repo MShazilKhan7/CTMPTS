@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework import status
 from .serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
@@ -8,17 +9,20 @@ from rest_framework.authentication import TokenAuthentication
 from .models import CustomUser
 import jwt
 import datetime
-
+from functools import wraps
+from .auth_decorators import JWT_Authentication
 # Create your views here.
+
+
+
 class RegisterUser(APIView):
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
-    
-    
-  
+        return Response(serializer.data) 
+
+        
 class LoginUser(APIView):
     def post(self, request, *args, **kwargs):
         username = request.data['username']
@@ -32,40 +36,45 @@ class LoginUser(APIView):
 
         payload = {
             'id': user.id,
-            'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=2),
+            'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30),
             'iat': datetime.datetime.utcnow()
         }
-        
         token = jwt.encode(payload, 'secret', algorithm='HS256')
         response  = Response()
         #  setting in the cookies
-
         response.set_cookie(key='jwt', value=token, httponly=True)
         response.data = {
             'jwt': token
         }
         
         return response
-
-        
+       
 class TokenVerification(APIView):
-    # permission_classes = [IsAuthenticated]
-    def get(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         try:
-            token = request.COOKIES.get('jwt')
+            token = request.data.get('jwt')
+            print(token)
             if token is None:
                 raise AuthenticationFailed('Unauthenticated')
-            data = jwt.decode(token, 'secret', algorithms="HS256")
-            user    = CustomUser.objects.get(id=data['id'])
-            if user:
-                return Response({
-                    'message': "success",
-                    'data': "mydata"
-                })
-            #koi return nahi milega tw except chalega
+            data         = jwt.decode(token, 'secret', algorithms="HS256")
+            user         = CustomUser.objects.get(id=data['id'])
+            request.user = user
+            print(user, "request.user", request.user)
                 
         except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Token has expired')
+            return Response({'message':'Token is expired','status': status.HTTP_401_UNAUTHORIZED})
         except jwt.DecodeError:
-            raise AuthenticationFailed('Token is invalid')
+            return Response({'message':'Token is invalid','status': status.HTTP_401_UNAUTHORIZED})
+        except CustomUser.DoesNotExist:
+            return Response({'message':'User does not exist','status': status.HTTP_401_UNAUTHORIZED})
+        
+        
+        return Response({
+            'message': "Success",
+            'status': status.HTTP_200_OK
+        })
+    
+
+
+
 

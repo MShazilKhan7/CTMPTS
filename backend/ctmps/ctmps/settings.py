@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 
+
 ]
 
 ROOT_URLCONF = 'ctmps.urls'
@@ -123,11 +124,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-REST_FRAMEWORK = {
-    '   THENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -138,5 +135,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-CORS_ORIGIN_ALLOW_ALL = True
 AUTH_USER_MODEL = 'api.CustomUser'
+CORS_ALLOWED_ORIGINS_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
